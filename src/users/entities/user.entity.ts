@@ -29,7 +29,6 @@ export class User {
 	email: string
 
 	@OneToMany(() => Photo, photo => photo.user, {
-		eager: true,
 		cascade: true,
 	})
 	photos: Photo[]

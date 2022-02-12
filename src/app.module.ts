@@ -1,3 +1,4 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
@@ -12,7 +13,8 @@ import { UsersModule } from './users/users.module'
 	imports: [
 		ConfigModule.forRoot(),
 		TypeOrmModule.forRoot(config),
-		GraphQLModule.forRoot({
+		GraphQLModule.forRoot<ApolloDriverConfig>({
+			driver: ApolloDriver,
 			playground: false,
 			plugins: [ApolloServerPluginLandingPageLocalDefault()],
 			autoSchemaFile: join(process.cwd(), 'src/schema.gql'),

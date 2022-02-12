@@ -1,0 +1,80 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  photos: [Photo!]!
+}
+
+type Photo {
+  id: ID!
+  title: String!
+  description: String
+  filename: String!
+  isPublished: Boolean
+  user: User!
+  userId: Float!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
+  photos: [Photo!]!
+  photo(id: Int!): Photo!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createPhoto(createPhotoInput: CreatePhotoInput!): Photo!
+  updatePhoto(updatePhotoInput: UpdatePhotoInput!): Photo!
+  removePhoto(id: Int!): Photo!
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
+input UpdateUserInput {
+  username: String
+  password: String
+  firstName: String
+  lastName: String
+  email: String
+  id: Int!
+}
+
+input CreatePhotoInput {
+  title: String!
+  filename: String!
+  isPublished: Boolean = false
+  description: String
+  userId: Float!
+}
+
+input UpdatePhotoInput {
+  title: String
+  filename: String
+  isPublished: Boolean = false
+  description: String
+  userId: Float
+  id: Int!
+}
